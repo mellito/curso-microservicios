@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build 
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build 
 WORKDIR /src
 COPY GetChildren.csproj .
 RUN dotnet restore
@@ -8,7 +8,7 @@ RUN dotnet build "GetChildren.csproj" -c Release -o /app/build
 
 RUN dotnet publish -c release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "GetChildren.dll"]

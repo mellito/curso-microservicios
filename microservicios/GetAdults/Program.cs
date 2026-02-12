@@ -5,21 +5,13 @@ using GetAdults.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-                       ?? Environment.GetEnvironmentVariable("SQL_CONNECTION_STRING");
-
-
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 async Task<List<Adult>> GetAdults(DataContext context) => await context.Adults.ToListAsync();

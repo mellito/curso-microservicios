@@ -2,7 +2,7 @@
 
 RESOURCE_GROUP_NAME="rg-microservicios"
 LOCATION="eastus2"
-SB_NAMESPACE_NAME="sb-age"
+SB_NAMESPACE_NAME="sb-age-test"
 CONTAINER_APPS_ENV_NAME="env-microservicios"
 
 # Create a resource group

@@ -1,4 +1,4 @@
-@AddAdult_HostAddress = http://localhost:5236
+@AddAdult_HostAddress = http://localhost:5115
 
 GET {{AddAdult_HostAddress}}/weatherforecast/
 Accept: application/json

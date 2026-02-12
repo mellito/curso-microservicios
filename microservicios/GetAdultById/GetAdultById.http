@@ -1,6 +1,10 @@
-@GetAdultById_HostAddress = http://localhost:5234
+@GetAdultById_HostAddress = http://localhost:5291
 
-GET {{GetAdultById_HostAddress}}/weatherforecast/
+@Docker_HostAddress = http://localhost:5001
+
+GET {{GetAdultById_HostAddress}}/Adult/{id}
 Accept: application/json
 
 ###
+GET {{Docker_HostAddress}}/Adult/2
+Accept: application/json

@@ -11,8 +11,8 @@ namespace PickAge
 
         public Worker(IConfiguration configuration)
         {
-            _connectionString = configuration["ServiceBus:ConnectionString"] ?? Environment.GetEnvironmentVariable("SERVICEBUS_CONNECTION_STRING");
-            _queueName = configuration["ServiceBus:QueueName"] ?? Environment.GetEnvironmentVariable("SERVICE_BUS_QUEUE_NAME");
+            _connectionString = configuration["ServiceBus:ConnectionString"];
+            _queueName = configuration["ServiceBus:QueueName"];
             _client = new ServiceBusClient(_connectionString);
             _processor = _client.CreateProcessor(_queueName, new ServiceBusProcessorOptions());
         }
@@ -31,7 +31,7 @@ namespace PickAge
         {
             string body = args.Message.Body.ToString();
             await CreateAndSendTopic(body);
-            Console.WriteLine($"Mensaje recibido: {body}");
+            Console.WriteLine($"Received message: {body}");
 
             await args.CompleteMessageAsync(args.Message);
         }
@@ -75,5 +75,6 @@ namespace PickAge
                 await topicClient.SendMessageAsync(message);
             }
         }
-    }    
+
+    }
 }
